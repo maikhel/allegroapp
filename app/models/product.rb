@@ -10,7 +10,7 @@ class Product
 		 log: true,
 		 log_level: :debug,
 		 pretty_print_xml: true,
-		 ssl_verify_mode: :none)
+		 ssl_verify_mode: :none) #none only for dev environment!!!
 
 		# client = Savon.client(
 		# 	log: true,
@@ -26,15 +26,15 @@ class Product
 		
 		xml_message = {"countryCode" => '1', "webapiKey" => "sfe724d4"}
 
-		response = client.call(:do_get_countries, xml: '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:SandboxWebApi">
+		response = client.call(:do_get_countries, xml: "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:SandboxWebApi\">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:DoGetCountriesRequest>
          <urn:countryCode>1</urn:countryCode>
-         <urn:webapiKey>sfe724d4</urn:webapiKey>
+         <urn:webapiKey>#{ENV["WEBAPIKEY"]}</urn:webapiKey>
       </urn:DoGetCountriesRequest>
    </soapenv:Body>
-</soapenv:Envelope>')
+</soapenv:Envelope>")
 		# response = client.call(:do_show_item_info_ext, message: {"sessionHandle" => 'eba5e813c25a50b40039d746d7b0ccc3c32745010bcc68me00_1',"itemId" => 5039456794})
 
 		
