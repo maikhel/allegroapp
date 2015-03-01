@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   
   def index
-  	p = Product.new
+  	p = Lol.new
   	@data = p.data
   	render 'index'
   end

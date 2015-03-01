@@ -1,9 +1,12 @@
 class Product
 	
 	##{ENV["WEBAPIKEY"]}
-	
+	##{ENV["USER_PASSWORD"]}
+	##{ENV["USER_LOGIN"]}
+
 	
 	WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
+	local_version = '1422452391'
 	attr_reader :it_id, :name, :ItBuyNowPrice, :ItCity, :data
 	
 	def initialize
@@ -18,16 +21,37 @@ class Product
    <soapenv:Header/>
    <soapenv:Body>
       <urn:DoLoginRequest>
-         <urn:userLogin>Maik345</urn:userLogin>
-         <urn:userPassword>fe724d40056bfd68 </urn:userPassword>
+         <urn:userLogin>#{ENV["USER_LOGIN"]}</urn:userLogin>
+         <urn:userPassword>#{ENV["USER_PASSWORD"]} </urn:userPassword>
          <urn:countryCode>1</urn:countryCode>
          <urn:webapiKey>#{ENV["WEBAPIKEY"]}</urn:webapiKey>
-         <urn:localVersion>1422452391</urn:localVersion>
+         <urn:localVersion>#{local_version}</urn:localVersion>
       </urn:DoLoginRequest>
    </soapenv:Body>
 </soapenv:Envelope>"
-		client.call(:do_login, )		
-		
+		response = client.call(:do_login, )		
+		if response = 'ERR_INVALID_VERSION_CAT_SELL_FIELDS'
+			message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+			 xmlns:urn=\"urn:SandboxWebApi\">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:DoQuerySysStatusRequest>
+         <urn:sysvar>4</urn:sysvar>
+         <urn:countryId>1</urn:countryId>
+         <urn:webapiKey>#{ENV["WEBAPIKEY"]}</urn:webapiKey>
+      </urn:DoQuerySysStatusRequest>
+   </soapenv:Body>
+</soapenv:Envelope>"
+			response = client.call(:do_query_sys_status, xml: message)
+
+			#przechwycić ns1:verKey
+			if data
+
+			end
+
+
+		end
+
 		
 		#xml_message = {"countryCode" => '1', "webapiKey" => "sfe724d4"}
 		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:SandboxWebApi\">
@@ -47,6 +71,57 @@ class Product
 			puts "DATA JEST"
 
 		end
+
+
+		
+  	end
+
+
+  	def take_new_local_version
+
+
+  		client = Savon.client(wsdl: WSDL_URL,
+		 log: true,
+		 log_level: :debug,
+		 pretty_print_xml: true,
+		 ssl_verify_mode: :none)
+
+		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+					 xmlns:urn=\"urn:SandboxWebApi\">
+		   <soapenv:Header/>
+		   <soapenv:Body>
+		      <urn:DoQuerySysStatusRequest>
+		         <urn:sysvar>4</urn:sysvar>
+		         <urn:countryId>1</urn:countryId>
+		         <urn:webapiKey>#{ENV["WEBAPIKEY"]}</urn:webapiKey>
+		      </urn:DoQuerySysStatusRequest>
+		   </soapenv:Body>
+		</soapenv:Envelope>"
+
+		response = client.call(:do_query_sys_status, xml: xml_message)
+
+		data = response.to_array(:do_query_sys_status_response).first
+		local_version = data[:ver_key]
+
+
+
+  	end
+
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,9 +146,3 @@ class Product
 		      #   @area_code = data[:area_code]
 		      #   @time_zone = data[:time_zone]
 		      # end
-		
-  	end
-end
-
-
-
