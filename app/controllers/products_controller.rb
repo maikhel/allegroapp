@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
   
   def index
-  	p = Lol.new
-  	@data = p.data
+	client = SoapConnection.new
+
+	@data = client.take_categories
   	render 'index'
   end
 
