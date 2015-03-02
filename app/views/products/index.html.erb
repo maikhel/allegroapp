@@ -1,2 +1,9 @@
 <h1>Product</h1>
-<p><%= @data %></p>
+
+
+	<% @data.each do |item| %></p>
+	
+	<p><%= item.name %></p>
+	<p><%= item.price %></p>
+	<p><%= Time.at(item.ending_time) %></p>
+	<% end %>

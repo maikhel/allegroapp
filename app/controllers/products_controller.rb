@@ -3,7 +3,9 @@ class ProductsController < ApplicationController
   def index
 	client = SoapConnection.new
 
-	@data = client.take_categories
+	client.login
+	@data = client.search("auto")
+
   	render 'index'
   end
 
