@@ -76,29 +76,40 @@
                   
           <div class="btn-group" data-toggle="buttons">
           <label class="btn btn-primary btn-block active">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> Strefa okazji</label>
+            <input type="radio" name="options" id="1"
+            autocomplete="off" checked><%:onclick %> Strefa okazji</label>
+
             <br><br>
           <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Elektronika</label>
-            <br><br>
+            <input type="radio" name="options" id="10" onclick="showId(this.id)" autocomplete="off"> Elektronika</label> 
           <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Moda i uroda</label>
+            <input type="radio" name="options" id="3" onclick="showId(this.id)" autocomplete="off"> Moda i uroda</label>
             <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Dom i zdrowie</label>
+            <input type="radio" name="options" id="4" autocomplete="off"> Dom i zdrowie</label>
             <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Dziecko</label>
+            <input type="radio" name="options" id="5" autocomplete="off"> Dziecko</label>
             <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Kultura i rozrywka</label>
+            <input type="radio" name="options" id="6" autocomplete="off"> Kultura i rozrywka</label>
             <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Sport i wypoczynek</label>
+            <input type="radio" name="options" id="7" autocomplete="off"> Sport i wypoczynek</label>
             <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Motoryzacja</label>
+            <input type="radio" name="options" id="8" autocomplete="off"> Motoryzacja</label>
             <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Kolekcje i sztuka</label>
+            <input type="radio" name="options" id="9" autocomplete="off"> Kolekcje i sztuka</label>
             <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Firma i usługi</label>
-            
-            
+            <input type="radio" name="options" id="10" autocomplete="off"> Firma i usługi</label>
+            <% @checked_id %>
+
+              <script type="text/javascript">
+              <% @checked_id= %>
+               $('input:radio[name="options"]').change(
+                  function(){
+                    return $('input:radio[name="options"]:checked').attr('id');
+                  });
+
+              </script>
+              <li><%="checked_id= #{@checked_id}" %></li>
+          
         </div>
                   <!-- <li><%= link_to "Elektronika", "/path1"  %></li>
                   <li><%= link_to "Moda i uroda", "/path2"  %></li>

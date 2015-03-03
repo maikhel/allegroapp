@@ -24,7 +24,7 @@ class SoapConnection
 		 	pretty_print_xml: true,
 		 	strip_namespaces: true,
 		 	ssl_verify_mode: :none) #none only for dev environment!!!)
-		
+		self.login
 
 	end
 
@@ -55,8 +55,8 @@ class SoapConnection
 
 	end
 
-	def search(item)
-
+	def search(item, category_num)
+		puts category_num
 		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:SandboxWebApi\">
    <soapenv:Header/>
    <soapenv:Body>
@@ -64,6 +64,8 @@ class SoapConnection
          <urn:sessionHandle>#{@@session_handle}</urn:sessionHandle>
          <urn:searchQuery>
             <urn:searchString>#{item}</urn:searchString>
+            <urn:searchOrder>1</urn:searchOrder>
+            <urn:searchCategory>#{category_num}</urn:searchCategory>
          </urn:searchQuery>
       </urn:DoSearchRequest>
    </soapenv:Body>

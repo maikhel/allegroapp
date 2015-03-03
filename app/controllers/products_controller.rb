@@ -3,11 +3,12 @@ class ProductsController < ApplicationController
   def index
 
   	client = SoapConnection.new
-  	client.login
+  	@checked_id = 0
+    
   	 if params[:search]
-      @data = client.search(params[:search])
+      @data = client.search(params[:search], @checked_id)
     else
-      @data = client.search("auto")
+      @data = client.search("auto", 5)
     end
   	render 'index'
   end
@@ -15,3 +16,10 @@ class ProductsController < ApplicationController
   
 
 end
+
+#TODO
+# szukanie po kategoriach
+# poprawne id kategorii
+# guzik sortowania po cenie
+# wyświetlanie linków do ofert
+
