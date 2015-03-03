@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   	client = SoapConnection.new
   	cat = client.categories[params[:category]]
-  	 if params[:search]
+  	if params[:search]
       @data = client.search(params[:search], cat)
     else
       @data = client.search("auto", 5)
@@ -15,10 +15,4 @@ class ProductsController < ApplicationController
   
 
 end
-
-#TODO
-# szukanie po kategoriach
-# poprawne id kategorii
-# guzik sortowania po cenie
-# wyświetlanie linków do ofert
 

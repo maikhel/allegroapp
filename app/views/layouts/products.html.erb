@@ -54,9 +54,9 @@
           </ul> -->
           <form class="navbar-form navbar-left" role="search">
             <%= text_field_tag :search, params[:search], class: "form-control" %>
-            <%= label_tag(:category,"Choose category:") %><br>
+            <%= label_tag(:category,"Choose category:") %>
 
-            <%= select_tag "korzystanie",
+            <%= select_tag "category",
             "<option>Elektronika</option>
             <option>Moda i uroda</option>
             <option>Dom i zdrowie</option>
@@ -74,10 +74,13 @@
     </div>
 
     <div class="container">
-      
-      </div><!--/row-->
+      <div class="row">
+     <div class="col-md-12">
+          <%= bootstrap_flash %>
+          <%= yield %>
+     </div>
 
-     
+     </div>
 
     </div> <!-- /container -->
 

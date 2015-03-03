@@ -8,10 +8,11 @@
       <th>Name </th>
       <th>Price</th>
       <th>Ending time </th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      
     </tr>
   </thead>
   <tbody>
+   
     <% @data.each do |item| %>
     <tr>
 	        <td><%= item.name %></td>
