@@ -76,15 +76,25 @@ class SoapConnection
 		#message = {"sessionHandle"=> @@session_handle, "searchString" => item}
 
 		response = @client.call(:do_search, xml: xml_message)	
-		
-		products = response.to_hash[:do_search_response][:search_array][:item]
 		@items = []
-		products.each do |product|
-			@items << Product.new(product[:s_it_id],product[:s_it_name],
-				product[:s_it_price],product[:s_it_ending_time],
-				product[:s_it_thumb_url])
-		end
-		@data = @items
+		
+			begin
+				products = response.to_hash[:do_search_response][:search_array][:item]
+				products.each do |product|
+					@items << Product.new(product[:s_it_id],product[:s_it_name],
+						product[:s_it_price],product[:s_it_ending_time],
+						product[:s_it_thumb_url])
+				end
+				@data = @items
+			rescue Exception => e
+				@data = @items
+			end
+			
+				@data = @items
+			
+			
+
+
 		
 	end
 	
