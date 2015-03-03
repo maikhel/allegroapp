@@ -59,7 +59,7 @@ class SoapConnection
 
 	end
 
-	def search(item, category_num)
+	def search(item, category_num,order)
 		
 		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:SandboxWebApi\">
    <soapenv:Header/>
@@ -68,7 +68,7 @@ class SoapConnection
          <urn:sessionHandle>#{@@session_handle}</urn:sessionHandle>
          <urn:searchQuery>
             <urn:searchString>#{item}</urn:searchString>
-            <urn:searchOrder>1</urn:searchOrder>
+            <urn:searchOrder>#{order}</urn:searchOrder>
             <urn:searchCategory>#{category_num}</urn:searchCategory>
          </urn:searchQuery>
       </urn:DoSearchRequest>
@@ -87,7 +87,7 @@ class SoapConnection
 			begin
 				products = response.to_hash[:do_search_response][:search_array][:item]
 				products.each do |product|
-					puts ">>>>>>>>>>> WRZUCAM PRODUCT!!!!!!!!!!!!!!!!"
+					
 					@items << Product.new(product[:s_it_id],product[:s_it_name],
 						product[:s_it_price],product[:s_it_ending_time],
 						product[:s_it_thumb_url])
@@ -96,8 +96,7 @@ class SoapConnection
 			rescue Exception => e
 				@data = @items
 			end
-				puts ">>>>>>>>data:: #{@data}"
-				puts ">>>>>>>>items: #{@items}"
+			
 				@data = @items
 			
 		

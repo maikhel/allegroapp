@@ -67,6 +67,12 @@
             <option>Kolekcje i sztuka</option>
             <option>Firma i usługi</option>
             <option>Strefa okazji</option>".html_safe %>
+            Order by: 
+            <%= radio_button_tag(:order, "price") %>
+            <%= label_tag(:price, "price") %>
+            <%= radio_button_tag(:order, "ending_time") %>
+            <%= label_tag(:ending_time, "ending time") %>
+
             <%= submit_tag "Search", :name => nil, class: "btn btn-info" %>
           </form>
         </div>

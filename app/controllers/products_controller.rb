@@ -4,13 +4,18 @@ class ProductsController < ApplicationController
 
   	client = SoapConnection.new
   	cat = client.categories[params[:category]]
+    order = params[:order]
+    order == 'price'? order=4 : order=1
   	if params[:search]
-      @data = client.search(params[:search], cat)
+      @data = client.search(params[:search], cat,order)
     else
       @data = client.search("auto", 5)
     end
   	render 'index'
   end
+
+
+
 
   
 
