@@ -3,10 +3,9 @@ class ProductsController < ApplicationController
   def index
 
   	client = SoapConnection.new
-  	@checked_id = 0
-    
+  	cat = client.categories[params[:category]]
   	 if params[:search]
-      @data = client.search(params[:search], @checked_id)
+      @data = client.search(params[:search], cat)
     else
       @data = client.search("auto", 5)
     end

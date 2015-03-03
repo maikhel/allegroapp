@@ -1,6 +1,8 @@
 class Product
 	
-	attr_reader :name, :price, :ending_time
+	attr_reader :name, :price, :ending_time, :categories
+
+	
 
   	def initialize(id, name, price, ending_time, thumb_url)
 

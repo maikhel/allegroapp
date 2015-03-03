@@ -54,6 +54,19 @@
           </ul> -->
           <form class="navbar-form navbar-left" role="search">
             <%= text_field_tag :search, params[:search], class: "form-control" %>
+            <%= label_tag(:category,"Choose category:") %><br>
+
+            <%= select_tag "korzystanie",
+            "<option>Elektronika</option>
+            <option>Moda i uroda</option>
+            <option>Dom i zdrowie</option>
+            <option>Dziecko</option>
+            <option>Kultura i rozrywka</option>
+            <option>Sport i wypoczynek</option>
+            <option>Motoryzacja</option>
+            <option>Kolekcje i sztuka</option>
+            <option>Firma i usługi</option>
+            <option>Strefa okazji</option>".html_safe %>
             <%= submit_tag "Search", :name => nil, class: "btn btn-info" %>
           </form>
         </div>
@@ -61,74 +74,10 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Categories</h3>
-            <ul class="nav nav-list">
-              
-                  
-
-                  
-          <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-primary btn-block active">
-            <input type="radio" name="options" id="1"
-            autocomplete="off" checked><%:onclick %> Strefa okazji</label>
-
-            <br><br>
-          <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="10" onclick="showId(this.id)" autocomplete="off"> Elektronika</label> 
-          <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="3" onclick="showId(this.id)" autocomplete="off"> Moda i uroda</label>
-            <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="4" autocomplete="off"> Dom i zdrowie</label>
-            <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="5" autocomplete="off"> Dziecko</label>
-            <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="6" autocomplete="off"> Kultura i rozrywka</label>
-            <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="7" autocomplete="off"> Sport i wypoczynek</label>
-            <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="8" autocomplete="off"> Motoryzacja</label>
-            <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="9" autocomplete="off"> Kolekcje i sztuka</label>
-            <label class="btn btn-primary btn-block">
-            <input type="radio" name="options" id="10" autocomplete="off"> Firma i usługi</label>
-            <% @checked_id %>
-
-              <script type="text/javascript">
-              <% @checked_id= %>
-               $('input:radio[name="options"]').change(
-                  function(){
-                    return $('input:radio[name="options"]:checked').attr('id');
-                  });
-
-              </script>
-              <li><%="checked_id= #{@checked_id}" %></li>
-          
-        </div>
-                  <!-- <li><%= link_to "Elektronika", "/path1"  %></li>
-                  <li><%= link_to "Moda i uroda", "/path2"  %></li>
-                  <li><%= link_to "Dom i zdrowie", "/path3"  %></li>
-                  <li><%= link_to "Dziecko", "/path3"  %></li>
-                  <li><%= link_to "Kultura i rozrywka", "/path3"  %></li>
-                  <li><%= link_to "Sport i wypoczynek", "/path3"  %></li>
-                  <li><%= link_to "Motoryzacja", "/path3"  %></li>
-                  <li><%= link_to "Kolekcje i sztuka", "/path3"  %></li>
-                  <li><%= link_to "Firma i usługi", "/path3"  %></li> -->
-              
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+      
       </div><!--/row-->
 
-      <footer>
-        <p>&copy; Michał Łęcicki 2015</p>
-      </footer>
+     
 
     </div> <!-- /container -->
 
