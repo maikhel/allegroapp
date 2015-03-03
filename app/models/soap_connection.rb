@@ -1,16 +1,27 @@
 class SoapConnection
 
 
-	WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
-	@@local_version = '1422452391'
-	@@country_id = 1
-	@@session_handle = 0
-	@@webapikey = 'sfe724d4'
+	
+	# WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
+	# @@webapikey = 'sfe724d4'
+	# @@user_login = 'Maik345'
+	# @@user_password ="fe724d40056bfd68"
+	# @@api_namespace = "xmlns:urn=\"urn:SandboxWebApi\""
+	#@@nam = "urn:"
+
+	#uncomment this to have real allegro
+	WSDL_URL = 'https://webapi.allegro.pl/service.php?wsdl'
+	@@webapikey = '11660af2'
 	@@user_login = 'Maik345'
-	@@user_password ="fe724d40056bfd68"
-	##{ENV["WEBAPIKEY"]}
-	##{ENV["USER_PASSWORD"]}
-	##{ENV["USER_LOGIN"]}
+	@@user_password ="maxPayne22"
+	@@api_namespace = "xmlns:ser=\"https://webapi.allegro.pl/service.php\""
+	@@nam = "ser:"
+
+
+	@@local_version = '1422452391'
+	@@country_id = 1 #Poland
+	@@session_handle = 0
+	
 
 
 
@@ -24,7 +35,9 @@ class SoapConnection
 		 	pretty_print_xml: true,
 		 	strip_namespaces: true,
 		 	ssl_verify_mode: :none) #none only for dev environment!!!)
+		self.take_new_local_version
 		self.login
+
 		@categories = {"Elektronika" => 67193, "Moda i uroda" => 250152, "Dom i zdrowie" =>79197,
 		"Dziecko" => 250145, "Kultura i rozrywka" => 262, "Sport i wypoczynek" => 3919,
 		"Motoryzacja" => 3, "Kolekcje i sztuka" => 105417, "Firma i usługi" => 105414, 
@@ -40,16 +53,17 @@ class SoapConnection
 
 
 	def login
-		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:SandboxWebApi\">
+		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+		 #{@@api_namespace}>
    <soapenv:Header/>
    <soapenv:Body>
-      <urn:DoLoginRequest>
-         <urn:userLogin>#{@@user_login}</urn:userLogin>
-         <urn:userPassword>#{@@user_password}</urn:userPassword>
-         <urn:countryCode>1</urn:countryCode>
-         <urn:webapiKey>#{@@webapikey}</urn:webapiKey>
-         <urn:localVersion>#{@@local_version}</urn:localVersion>
-      </urn:DoLoginRequest>
+      <#{@@nam}DoLoginRequest>
+         <#{@@nam}userLogin>#{@@user_login}</#{@@nam}userLogin>
+         <#{@@nam}userPassword>#{@@user_password}</#{@@nam}userPassword>
+         <#{@@nam}countryCode>1</#{@@nam}countryCode>
+         <#{@@nam}webapiKey>#{@@webapikey}</#{@@nam}webapiKey>
+         <#{@@nam}localVersion>#{@@local_version}</#{@@nam}localVersion>
+      </#{@@nam}DoLoginRequest>
    </soapenv:Body>
 </soapenv:Envelope>"
 
@@ -61,17 +75,18 @@ class SoapConnection
 
 	def search(item, category_num,order)
 		
-		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:SandboxWebApi\">
+		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+		 #{@@api_namespace}>
    <soapenv:Header/>
    <soapenv:Body>
-      <urn:DoSearchRequest>
-         <urn:sessionHandle>#{@@session_handle}</urn:sessionHandle>
-         <urn:searchQuery>
-            <urn:searchString>#{item}</urn:searchString>
-            <urn:searchOrder>#{order}</urn:searchOrder>
-            <urn:searchCategory>#{category_num}</urn:searchCategory>
-         </urn:searchQuery>
-      </urn:DoSearchRequest>
+      <#{@@nam}DoSearchRequest>
+         <#{@@nam}sessionHandle>#{@@session_handle}</#{@@nam}sessionHandle>
+         <#{@@nam}searchQuery>
+            <#{@@nam}searchString>#{item}</#{@@nam}searchString>
+            <#{@@nam}searchOrder>#{order}</#{@@nam}searchOrder>
+            <#{@@nam}searchCategory>#{category_num}</#{@@nam}searchCategory>
+         </#{@@nam}searchQuery>
+      </#{@@nam}DoSearchRequest>
    </soapenv:Body>
 </soapenv:Envelope>"
 		# begin
@@ -107,14 +122,14 @@ class SoapConnection
 	def take_new_local_version
 
 		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
-					 xmlns:urn=\"urn:SandboxWebApi\">
+					 #{@@api_namespace}>
 		   <soapenv:Header/>
 		   <soapenv:Body>
-		      <urn:DoQuerySysStatusRequest>
-		         <urn:sysvar>4</urn:sysvar>
-		         <urn:countryId>1</urn:countryId>
-		         <urn:webapiKey>#{ENV["WEBAPIKEY"]}</urn:webapiKey>
-		      </urn:DoQuerySysStatusRequest>
+		      <#{@@nam}DoQuerySysStatusRequest>
+		         <#{@@nam}sysvar>4</#{@@nam}sysvar>
+		         <#{@@nam}countryId>1</#{@@nam}countryId>
+		         <#{@@nam}webapiKey>#{@@webapikey}</#{@@nam}webapiKey>
+		      </#{@@nam}DoQuerySysStatusRequest>
 		   </soapenv:Body>
 		</soapenv:Envelope>"
 
@@ -130,4 +145,8 @@ class SoapConnection
 end
 
 
+
+
+
+ 
 

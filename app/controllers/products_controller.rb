@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   	if params[:search]
       @data = client.search(params[:search], cat,order)
     else
-      @data = client.search("auto", 5)
+      @data = client.search("auto", 5,1)
     end
   	render 'index'
   end
