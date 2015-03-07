@@ -3,9 +3,9 @@ class SoapConnection
 
 	
 	WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
-	@@webapikey = ''
-	@@user_login = ''
-	@@user_password =""
+	@@webapikey = 'sfe724d4'
+	@@user_login = 'Maik345'
+	@@user_password ="fe724d40056bfd68"
 	@@api_namespace = "xmlns:urn=\"urn:SandboxWebApi\""
 	@@nam = "urn:"
 

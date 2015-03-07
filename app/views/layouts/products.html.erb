@@ -54,6 +54,7 @@
           </ul> -->
           <form class="navbar-form navbar-left" role="search">
             <%= text_field_tag :search, params[:search], class: "form-control" %>
+
             <%= label_tag(:category,"Choose category:") %>
 
             <%= select_tag "category",
@@ -66,7 +67,7 @@
             <option>Motoryzacja</option>
             <option>Kolekcje i sztuka</option>
             <option>Firma i usługi</option>
-            <option>Strefa okazji</option>".html_safe %>
+            <option>Strefa okazji</option>".html_safe, class: "form-control" %>
             Order by: 
             <%= radio_button_tag(:order, "price") %>
             <%= label_tag(:price, "price") %>
@@ -74,6 +75,7 @@
             <%= label_tag(:ending_time, "ending time") %>
 
             <%= submit_tag "Search", :name => nil, class: "btn btn-info" %>
+            
           </form>
         </div>
       </div>
