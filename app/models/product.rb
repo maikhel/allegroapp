@@ -1,6 +1,6 @@
 class Product
 	
-	attr_reader :name, :price, :ending_time, :categories
+	attr_reader :name, :price, :ending_time, :categories, :thumb_url
 
 	
 

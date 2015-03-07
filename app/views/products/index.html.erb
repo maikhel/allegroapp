@@ -9,6 +9,7 @@
         <th>Name </th>
         <th>Price</th>
         <th>Ending time </th>
+        <th>Image</th>
         
       </tr>
     </thead>
@@ -19,12 +20,9 @@
   	        <td><%= item.name %></td>
   	        <td><%= item.price %></td>
   	        <td><%= item.ending_time %></td>
-  	        
-  	      </tr>
-        <tr>
-     
-          
-        </tr>
+  	        <td><img src="<%= item.thumb_url %>" class="img-thumbnail"></td>
+  	   </tr>
+        
       <% end %>
     </tbody>
   </table>
