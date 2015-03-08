@@ -9,7 +9,12 @@ class Product
   		@id = id
   		@name = name
   		@price = price
-  		@ending_time = Time.at(ending_time.to_i)
+
+      if ending_time.to_i == 0
+        @ending_time = "no time limit"
+      else
+  		  @ending_time = Time.at(ending_time.to_i)
+      end
   		@thumb_url = thumb_url
       name_link = name.tr(' ','-')
       name_link = name_link.tr('.', '-')
