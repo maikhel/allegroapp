@@ -17,7 +17,8 @@
     
       <% @data.each do |item| %>
       <tr>
-  	        <td><%= item.name %></td>
+  	        <td><%= item.name %>
+            <a href="<%= item.link %>" class="btn btn-link ">More</a></td>
   	        <td><%= item.price %></td>
   	        <td><%= item.ending_time %></td>
   	        <td><img src="<%= item.thumb_url %>" class="img-thumbnail"></td>

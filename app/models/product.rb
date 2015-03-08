@@ -1,6 +1,6 @@
 class Product
 	
-	attr_reader :name, :price, :ending_time, :categories, :thumb_url
+	attr_reader :name, :price, :ending_time, :categories, :thumb_url, :link
 
 	
 
@@ -11,6 +11,9 @@ class Product
   		@price = price
   		@ending_time = Time.at(ending_time.to_i)
   		@thumb_url = thumb_url
+      name_link = name.tr(' ','-')
+      name_link = name_link.tr('.', '-')
+      @link = "http://www.allegro.pl/"+name_link.downcase + "-i" + id +".html"
 
   	end
 
