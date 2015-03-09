@@ -5,7 +5,7 @@ class SoapConnection
 	# WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
 	# @@webapikey = 'sfe724d4'
 	# @@user_login = 'Maik345'
-	# @@user_password ="fe724d40056bfd68"
+	# @@user_password =Base64.encode64(Digest::SHA256.new.digest("fe724d40056bfd68"))
 	# @@api_namespace = "xmlns:urn=\"urn:SandboxWebApi\""
 	# @@nam = "urn:"
 
@@ -13,7 +13,7 @@ class SoapConnection
 	WSDL_URL = 'https://webapi.allegro.pl/service.php?wsdl'
 	@@webapikey = '11660af2'
 	@@user_login = 'Maik345'
-	@@user_password ="maxPayne22"
+	@@user_password =Base64.encode64(Digest::SHA256.new.digest("maxPayne22"))
 	@@api_namespace = "xmlns:ser=\"https://webapi.allegro.pl/service.php\""
 	@@nam = "ser:"
 
@@ -41,7 +41,7 @@ class SoapConnection
 		@categories = {"Elektronika" => 10, "Moda i uroda" => 250152, "Dom i zdrowie" =>79197,
 		"Dziecko" => 250145, "Kultura i rozrywka" => 262, "Sport i wypoczynek" => 3919,
 		"Motoryzacja" => 3, "Kolekcje i sztuka" => 105417, "Firma i usługi" => 105414, 
-		"Strefa okazji"=>98316}
+		"Strefa okazji"=>98316, "Wszystko" => 0}
 
 	end
 
@@ -57,21 +57,22 @@ class SoapConnection
 		 #{@@api_namespace}>
    <soapenv:Header/>
    <soapenv:Body>
-      <#{@@nam}DoLoginRequest>
+      <#{@@nam}DoLoginEncRequest>
          <#{@@nam}userLogin>#{@@user_login}</#{@@nam}userLogin>
-         <#{@@nam}userPassword>#{@@user_password}</#{@@nam}userPassword>
+         <#{@@nam}userHashPassword>#{@@user_password}</#{@@nam}userHashPassword>
          <#{@@nam}countryCode>1</#{@@nam}countryCode>
          <#{@@nam}webapiKey>#{@@webapikey}</#{@@nam}webapiKey>
          <#{@@nam}localVersion>#{@@local_version}</#{@@nam}localVersion>
-      </#{@@nam}DoLoginRequest>
+      </#{@@nam}DoLoginEncRequest>
    </soapenv:Body>
 </soapenv:Envelope>"
 
 		
-		response = @client.call(:do_login, xml: xml_message)
-		@@session_handle = response.to_hash[:do_login_response][:session_handle_part]
+		response = @client.call(:do_login_enc, xml: xml_message)
+		@@session_handle = response.to_hash[:do_login_enc_response][:session_handle_part]
 
 	end
+
 
 	def search(item, category_num,order)
 		
