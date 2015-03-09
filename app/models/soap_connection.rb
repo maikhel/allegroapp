@@ -38,7 +38,7 @@ class SoapConnection
 		self.take_new_local_version
 		self.login
 
-		@categories = {"Elektronika" => 67193, "Moda i uroda" => 250152, "Dom i zdrowie" =>79197,
+		@categories = {"Elektronika" => 10, "Moda i uroda" => 250152, "Dom i zdrowie" =>79197,
 		"Dziecko" => 250145, "Kultura i rozrywka" => 262, "Sport i wypoczynek" => 3919,
 		"Motoryzacja" => 3, "Kolekcje i sztuka" => 105417, "Firma i usługi" => 105414, 
 		"Strefa okazji"=>98316}

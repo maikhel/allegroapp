@@ -14,6 +14,7 @@ class Product
         @ending_time = "no time limit"
       else
   		  @ending_time = Time.at(ending_time.to_i)
+        
       end
   		@thumb_url = thumb_url
       name_link = name.tr(' ','-')
