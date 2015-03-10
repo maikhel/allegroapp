@@ -45,6 +45,10 @@ class SoapConnection
 
 	end
 
+	def call(operation_name, locals= {})
+		@client.call(operation_name, locals)
+	end
+
 	def take_categories
 		message = {"countryId" => 1, "webapiKey" => @@webapikey}
 		response = @client.call(:do_get_cats_data, message: message).body
@@ -135,6 +139,9 @@ class SoapConnection
 		   </soapenv:Body>
 		</soapenv:Envelope>"
 
+
+		#message = {sysvar: 4, countryId: 1, webapikey: @@webapikey}
+		#response = @client.call(:do_query_sys_status, message: message)
 		response = @client.call(:do_query_sys_status, xml: xml_message)
 
 		data = response.to_array(:do_query_sys_status_response).first
