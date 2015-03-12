@@ -18,7 +18,9 @@
       <% @data.each do |item| %>
       <tr>
   	        <td><%= item.name %>
-            <a href="<%= item.link %>" class="btn btn-link ">More</a></td>
+            <a href="<%= item.link %>" class="btn btn-link ">More</a><br>
+            <button type="button" class="btn btn-info">Save to database</button>
+            </td>
   	        <td><%= item.price %> zł</td>
   	        <td><%= item.ending_time.to_s[0..15] %></td>
   	        <td><img src="<%= item.thumb_url %>" class="img-thumbnail"></td>
