@@ -78,7 +78,7 @@ class SoapConnection
 	end
 
 
-	def search(item, category_num,order)
+	def searchString(item, category_num,order)
 		
 		xml_message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
 		 #{@@api_namespace}>

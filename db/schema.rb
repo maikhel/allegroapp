@@ -11,14 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405144704) do
-
-  create_table "items", force: :cascade do |t|
-    t.integer "product_id"
-    t.string  "name"
-    t.decimal "price"
-    t.date    "ending_time"
-    t.string  "thumb_url"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
