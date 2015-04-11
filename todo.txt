@@ -1,0 +1,33 @@
+Tickety:
+
+1. Dodać gem env
+	przenieść do pliku .env hasła
+
+2. Dodać zapisywanie do bazy danych
+
+3. Dodać opcję rejestracji użytkownika
+
+4. Dodać opcję logowania użytkownika
+
+5. Dodać opcję przypominania hasła dla użytkownika
+
+
+6. Dodać gemy do haml i przetłumaczyć wszystkie erb na haml
+
+7. Dodać paginację do wyników wyszukiwania
+
+8. Dodać ładny panel z kategoriami z bootstrap js
+
+
+9. Dodać panel zarządzania użytkownikami RailsAdmin
+
+
+10. Dodać gem Rspec i napisać testy do modeli
+
+
+11. Dodać sugerowanie wyszukiwania
+
+
+12. Poprawić działanie savon - żeby nie wklejać xmli
+
+13. dodać i18n

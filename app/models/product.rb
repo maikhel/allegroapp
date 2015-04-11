@@ -1,12 +1,12 @@
 class Product
 	
-	attr_reader :name, :price, :ending_time, :categories, :thumb_url, :link, :id
+	attr_reader :name, :price, :ending_time, :categories, :thumb_url, :link, :allegro_id
 
 	
 
   	def initialize(id, name, price, ending_time, thumb_url)
 
-  		@id = id
+  		@allegro_id = id
   		@name = name
   		@price = price
 
@@ -23,6 +23,11 @@ class Product
 
   	end
 
+    def to_hash
+      hash = {}
+      instance_variables.each {|var| hash[var.to_s.delete("@")] = instance_variable_get(var) }
+      hash
+    end
 
 
 

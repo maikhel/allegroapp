@@ -15,11 +15,11 @@
     </thead>
     <tbody>
     
-      <% @data.each do |item| %>
+      <% @items.each do |item| %>
       <tr>
   	        <td><%= item.name %>
             <a href="<%= item.link %>" class="btn btn-link ">More</a><br>
-            <button id="<%= item.id %>" type="button" class="btn btn-info">Save to database</button>
+            <%= link_to "Save item", products_path({:product => item.to_hash}), :method=> :post, remote: true, class: "btn btn-info", id: "save_item_button" %>
             </td>
   	        <td><%= item.price %> zł</td>
   	        <td><%= item.ending_time.to_s[0..15] %></td>
