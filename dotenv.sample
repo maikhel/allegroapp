@@ -1,0 +1,13 @@
+#INFO: uzupełnij i zmień nazwę pliku na .env
+
+
+WSDL_URL='https://webapi.allegro.pl/service.php?wsdl'
+WEB_API_KEY=
+USER_LOGIN=
+USER_PASSWORD=
+
+API_NAMESPACE="xmlns:ser=\"https://webapi.allegro.pl/service.php\""
+NAM= "ser:"
+
+
+	

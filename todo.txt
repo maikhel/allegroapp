@@ -3,8 +3,6 @@ Tickety:
 1. Dodać gem env
 	przenieść do pliku .env hasła
 
-2. Dodać zapisywanie do bazy danych
-
 3. Dodać opcję rejestracji użytkownika
 
 4. Dodać opcję logowania użytkownika

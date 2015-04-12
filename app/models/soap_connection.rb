@@ -1,19 +1,13 @@
 class SoapConnection
 
-	# WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
-	#  @@webapikey = 'sfe724d4'
- #  	 @@user_login = 'Maik345'
-	# @@user_password =Base64.encode64(Digest::SHA256.new.digest("fe724d40056bfd68"))
-	# @@api_namespace = "xmlns:urn=\"urn:SandboxWebApi\""
-	# @@nam = "urn:"
-
-	#uncomment this to have real allegro
-	WSDL_URL = 'https://webapi.allegro.pl/service.php?wsdl'
-	@@webapikey = '11660af2'
-	@@user_login = 'Maik345'
-	@@user_password =Base64.encode64(Digest::SHA256.new.digest("maxPayne22"))
-	@@api_namespace = "xmlns:ser=\"https://webapi.allegro.pl/service.php\""
-	@@nam = "ser:"
+	
+	
+	WSDL_URL = ENV['WSDL_URL']
+	@@webapikey = ENV['WEB_API_KEY']
+	@@user_login = ENV['USER_LOGIN']
+	@@user_password =Base64.encode64(Digest::SHA256.new.digest(ENV['USER_PASSWORD']))
+	@@api_namespace = ENV['API_NAMESPACE']
+	@@nam = ENV['NAM']
 	
 	
 
