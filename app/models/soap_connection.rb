@@ -1,21 +1,21 @@
 class SoapConnection
 
-
-	
-	WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
-	@@webapikey = 'sfe724d4'
-	@@user_login = 'Maik345'
-	@@user_password ="fe724d40056bfd68"
-	@@api_namespace = "xmlns:urn=\"urn:SandboxWebApi\""
-	@@nam = "urn:"
+	# WSDL_URL = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
+	#  @@webapikey = 'sfe724d4'
+ #  	 @@user_login = 'Maik345'
+	# @@user_password =Base64.encode64(Digest::SHA256.new.digest("fe724d40056bfd68"))
+	# @@api_namespace = "xmlns:urn=\"urn:SandboxWebApi\""
+	# @@nam = "urn:"
 
 	#uncomment this to have real allegro
-	# WSDL_URL = 'https://webapi.allegro.pl/service.php?wsdl'
-	# @@webapikey = 'yourwebapikey'
-	# @@user_login = 'yourlogin'
-	# @@user_password ="yourpassword"
-	# @@api_namespace = "xmlns:ser=\"https://webapi.allegro.pl/service.php\""
-	# @@nam = "ser:"
+	WSDL_URL = 'https://webapi.allegro.pl/service.php?wsdl'
+	@@webapikey = '11660af2'
+	@@user_login = 'Maik345'
+	@@user_password =Base64.encode64(Digest::SHA256.new.digest("maxPayne22"))
+	@@api_namespace = "xmlns:ser=\"https://webapi.allegro.pl/service.php\""
+	@@nam = "ser:"
+	
+	
 
 
 	@@local_version = '1422452391'
@@ -38,11 +38,15 @@ class SoapConnection
 		self.take_new_local_version
 		self.login
 
-		@categories = {"Elektronika" => 67193, "Moda i uroda" => 250152, "Dom i zdrowie" =>79197,
+		@categories = {"Elektronika" => 10, "Moda i uroda" => 250152, "Dom i zdrowie" =>79197,
 		"Dziecko" => 250145, "Kultura i rozrywka" => 262, "Sport i wypoczynek" => 3919,
 		"Motoryzacja" => 3, "Kolekcje i sztuka" => 105417, "Firma i usługi" => 105414, 
-		"Strefa okazji"=>98316}
+		"Strefa okazji"=>98316, "Wszystko" => 0}
 
+	end
+
+	def call(operation_name, locals= {})
+		@client.call(operation_name, locals)
 	end
 
 	def take_categories
@@ -57,21 +61,22 @@ class SoapConnection
 		 #{@@api_namespace}>
    <soapenv:Header/>
    <soapenv:Body>
-      <#{@@nam}DoLoginRequest>
+      <#{@@nam}DoLoginEncRequest>
          <#{@@nam}userLogin>#{@@user_login}</#{@@nam}userLogin>
-         <#{@@nam}userPassword>#{@@user_password}</#{@@nam}userPassword>
+         <#{@@nam}userHashPassword>#{@@user_password}</#{@@nam}userHashPassword>
          <#{@@nam}countryCode>1</#{@@nam}countryCode>
          <#{@@nam}webapiKey>#{@@webapikey}</#{@@nam}webapiKey>
          <#{@@nam}localVersion>#{@@local_version}</#{@@nam}localVersion>
-      </#{@@nam}DoLoginRequest>
+      </#{@@nam}DoLoginEncRequest>
    </soapenv:Body>
 </soapenv:Envelope>"
 
 		
-		response = @client.call(:do_login, xml: xml_message)
-		@@session_handle = response.to_hash[:do_login_response][:session_handle_part]
+		response = @client.call(:do_login_enc, xml: xml_message)
+		@@session_handle = response.to_hash[:do_login_enc_response][:session_handle_part]
 
 	end
+
 
 	def search(item, category_num,order)
 		
@@ -85,6 +90,7 @@ class SoapConnection
             <#{@@nam}searchString>#{item}</#{@@nam}searchString>
             <#{@@nam}searchOrder>#{order}</#{@@nam}searchOrder>
             <#{@@nam}searchCategory>#{category_num}</#{@@nam}searchCategory>
+            <#{@@nam}searchLimit>100</#{@@nam}searchLimit>
          </#{@@nam}searchQuery>
       </#{@@nam}DoSearchRequest>
    </soapenv:Body>
@@ -133,6 +139,9 @@ class SoapConnection
 		   </soapenv:Body>
 		</soapenv:Envelope>"
 
+
+		#message = {sysvar: 4, countryId: 1, webapikey: @@webapikey}
+		#response = @client.call(:do_query_sys_status, message: message)
 		response = @client.call(:do_query_sys_status, xml: xml_message)
 
 		data = response.to_array(:do_query_sys_status_response).first

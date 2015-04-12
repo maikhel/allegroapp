@@ -9,22 +9,25 @@
         <th>Name </th>
         <th>Price</th>
         <th>Ending time </th>
+        <th>Image</th>
         
       </tr>
     </thead>
     <tbody>
     
-      <% @data.each do |item| %>
+      <% @items.each do |item| %>
       <tr>
-  	        <td><%= item.name %></td>
-  	        <td><%= item.price %></td>
-  	        <td><%= item.ending_time %></td>
-  	        
-  	      </tr>
-        <tr>
-     
+  	        <td><%= item.name %>
+            <a href="<%= item.link %>" class="btn btn-link ">More</a><br>
+           
+            <%= link_to "Save item", products_path({:product => item.to_hash}), :method=> :post, remote: true, class: "btn btn-info", id: item.allegro_id %>
           
-        </tr>
+            </td>
+  	        <td><%= item.price %> zł</td>
+  	        <td><%= item.ending_time.to_s[0..15] %></td>
+  	        <td><img src="<%= item.thumb_url %>" class="img-thumbnail"></td>
+  	   </tr>
+        
       <% end %>
     </tbody>
   </table>
