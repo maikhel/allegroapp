@@ -3,12 +3,12 @@ class ProductsController < ApplicationController
 
   def create
     @item = Item.new(product_params)
-
+    @id = product_params[:allegro_id]
     # flash[:success] = 'Product successfully saved' if @item.save
 
     respond_to do |format|
       if @item.save
-        format.js {render :create, notice: 'Product kkkkk'}
+        format.js {render :create}
       end
     end
 

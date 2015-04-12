@@ -31,3 +31,5 @@ Tickety:
 12. Poprawić działanie savon - żeby nie wklejać xmli
 
 13. dodać i18n
+
+Parameters: {"allegro_id"=>"5078074698", "ending_time"=>"no time limit", "link"=>"http://www.allegro.pl/sŁuchawki-douszne-akg-y10-brĄzowe-biaŁe-niebieskie-i5078074698.html", "name"=>"SŁUCHAWKI DOUSZNE AKG Y10 BRĄZOWE BIAŁE NIEBIESKIE", "price"=>"39", "thumb_url"=>"http://img13.allegroimg.pl/photos/128x96/50/78/07/46/5078074698"}
