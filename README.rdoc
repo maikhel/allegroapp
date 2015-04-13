@@ -3,7 +3,7 @@
 (very, very) Simple version of AllegroAPI to search products
 
 1. download
-2. fill in models/SoapConnection.rb
+2. fill in dotenv.sample and rename to '.env'
 3. run and get i.ex localhost:3000
 4. search for products
 
