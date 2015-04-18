@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'simple_form'
 gem 'haml-rails'
 gem "twitter-bootstrap-rails"
 gem 'savon'
