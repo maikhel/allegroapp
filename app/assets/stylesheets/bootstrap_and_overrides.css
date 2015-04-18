@@ -5,3 +5,45 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+
+
+.my-group{
+	display: block;
+}
+
+.btn-block{
+	margin-bottom: 3px;
+	border-radius: 0;
+
+}
+
+.btn{
+	border-radius: 0;
+
+}
+
+.my-group.active{
+	background-color: #0520B5;
+}
+
+.item-price{
+	font-size: 20px;
+	font-weight: 700;
+	color: #ff7100;
+}
+
+.save-item-btn{
+	background-color: #ff7100;
+	color: white;
+}
+
+.my-sidebar{
+	padding-left: 0;
+	margin-top: 0;
+	border-radius: 0;
+	border-top-width: 0;
+}
+.my-nav{
+	margin-bottom: 0;
+}
+
