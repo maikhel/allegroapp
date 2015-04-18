@@ -3,29 +3,24 @@
 
 <br>
 <div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name </th>
-        <th>Price</th>
-        <th>Ending time </th>
-        <th>Image</th>
-        
-      </tr>
-    </thead>
+  <table class="table">
+   
     <tbody>
     
       <% @items.each do |item| %>
       <tr>
-  	        <td><%= item.name %>
-            <a href="<%= item.link %>" class="btn btn-link ">More</a><br>
+            <td><img src="<%= item.thumb_url %>" class="img-thumbnail"></td>
+  	        <td>
+              <span><h5><%= item.name %> </h5><%= link_to "More", item.link %></span>
            
-            <%= link_to "Save item", products_path({:product => item.to_hash}), :method=> :post, remote: true, class: "btn btn-info", id: item.allegro_id %>
-          
+            <br><br> 
+            <%= item.ending_time.to_s[0..15] %>
             </td>
-  	        <td><%= item.price %> zł</td>
-  	        <td><%= item.ending_time.to_s[0..15] %></td>
-  	        <td><img src="<%= item.thumb_url %>" class="img-thumbnail"></td>
+  	        <td>
+              <br><div class='item-price'><%= item.price %></div>
+            <br>
+            <%= link_to "Save item", products_path({:product => item.to_hash}), :method=> :post, remote: true, class: "btn save-item-btn", id: item.allegro_id %></td>
+  	        
   	   </tr>
         
       <% end %>
