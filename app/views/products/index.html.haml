@@ -1,0 +1,22 @@
+%h1 Products
+%br/
+.table-responsive
+  %table.table
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td
+            %img.img-thumbnail{:src => "#{item.thumb_url}"}/
+          %td
+            %span
+              %h5
+                = item.name
+              = link_to "More", item.link
+            %br/
+            %br/
+            = item.ending_time.to_s[0..15]
+          %td
+            %br/
+            .item-price= item.price
+            %br/
+            = link_to "Save item", products_path({:product => item.to_hash}), :method=> :post, remote: true, class: "btn save-item-btn", id: item.allegro_id

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'haml-rails'
 gem "twitter-bootstrap-rails"
 gem 'savon'
 gem 'jquery-ui-rails'

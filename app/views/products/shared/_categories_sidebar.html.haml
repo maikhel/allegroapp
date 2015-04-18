@@ -1,0 +1,9 @@
+.col-md-3.my-sidebar
+  .well.sidebar-nav
+    %h3 Categories
+    .btn-group.my-group{"data-toggle" => "buttons"}
+      - @categories.each do |key,value|
+        %label.btn.btn-primary.btn-block
+          %input{:autocomplete => "off", :id => value, :type => "radio", :value => key}/
+          = key
+        %br/
