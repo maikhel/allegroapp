@@ -28,39 +28,41 @@
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application"
   %body
-    .navbar.navbar-default.navbar-static-top.my-nav
+    #body-wrapper
+      .navbar.navbar-default.navbar-static-top.my-nav
+        .container
+          %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .navbar-brand Search for:
+          .navbar-collapse.collapse.navbar-responsive-collapse
+            %form.navbar-form.navbar-left{:role => "search"}
+              = text_field_tag :search, params[:search], placeholder: 'wyszukaj',class: "form-control"
+              = submit_tag "Search", :name => nil, class: "btn btn-info"
+              = label_tag(:category,"Choose category:")
+              = select_tag "category",                                      |
+                "<option>Elektronika</option>                               |
+                <option>Moda i uroda</option>                               |
+                <option>Dom i zdrowie</option>                              |
+                <option>Dziecko</option>                                    |
+                <option>Kultura i rozrywka</option>                         |
+                <option>Sport i wypoczynek</option>                         |
+                <option>Motoryzacja</option>                                |
+                <option>Kolekcje i sztuka</option>                          |
+                <option>Firma i usługi</option>                             |
+                <option>Strefa okazji</option>                              |
+                <option>Wszystko</option>".html_safe, class: "form-control" |
+              Order by:
+              \#{radio_button_tag(:order, "price")}
+              \#{label_tag(:price, "price")}
+              \#{radio_button_tag(:order, "ending_time")}
+              \#{label_tag(:ending_time, "ending time")}
+      = render 'shared/categories_sidebar'
       .container
-        %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        .navbar-brand Search for:
-        .navbar-collapse.collapse.navbar-responsive-collapse
-          %form.navbar-form.navbar-left{:role => "search"}
-            = text_field_tag :search, params[:search], placeholder: 'wyszukaj',class: "form-control"
-            = submit_tag "Search", :name => nil, class: "btn btn-info"
-            = label_tag(:category,"Choose category:")
-            = select_tag "category",                                      |
-              "<option>Elektronika</option>                               |
-              <option>Moda i uroda</option>                               |
-              <option>Dom i zdrowie</option>                              |
-              <option>Dziecko</option>                                    |
-              <option>Kultura i rozrywka</option>                         |
-              <option>Sport i wypoczynek</option>                         |
-              <option>Motoryzacja</option>                                |
-              <option>Kolekcje i sztuka</option>                          |
-              <option>Firma i usługi</option>                             |
-              <option>Strefa okazji</option>                              |
-              <option>Wszystko</option>".html_safe, class: "form-control" |
-            Order by:
-            \#{radio_button_tag(:order, "price")}
-            \#{label_tag(:price, "price")}
-            \#{radio_button_tag(:order, "ending_time")}
-            \#{label_tag(:ending_time, "ending time")}
-    = render 'products/shared/categories_sidebar'
-    .container
-      .row
-        .col-md-9{"id:" => ""}
-          = bootstrap_flash
-          = yield
-    / /container
+        .row
+          .col-md-9{"id:" => ""}
+            = bootstrap_flash
+            = yield
+      .push      
+    = render :partial => 'shared/footer'

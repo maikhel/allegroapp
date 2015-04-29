@@ -8,10 +8,8 @@
           %td
             %img.img-thumbnail{:src => "#{item.thumb_url}"}/
           %td
-            %span
-              %h5
-                = item.name
-              = link_to "More", item.link
+            %h5>= item.name
+            %a{:href => item.link}> More
             %br/
             %br/
             = item.ending_time.to_s[0..15]
