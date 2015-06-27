@@ -1,0 +1,34 @@
+.container
+  %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+  .navbar-brand Search for:
+  .navbar-collapse.collapse.navbar-responsive-collapse
+    %form.navbar-form.navbar-left{:role => "search"}
+      = text_field_tag :search, params[:search], placeholder: 'wyszukaj',class: "form-control"
+      = submit_tag "Search", :name => nil, class: "btn btn-info"
+      = label_tag(:category,"Choose category:")
+      = select_tag "category",                                      |
+        "<option>Elektronika</option>                               |
+        <option>Moda i uroda</option>                               |
+        <option>Dom i zdrowie</option>                              |
+        <option>Dziecko</option>                                    |
+        <option>Kultura i rozrywka</option>                         |
+        <option>Sport i wypoczynek</option>                         |
+        <option>Motoryzacja</option>                                |
+        <option>Kolekcje i sztuka</option>                          |
+        <option>Firma i usługi</option>                             |
+        <option>Strefa okazji</option>                              |
+        <option>Wszystko</option>".html_safe, class: "form-control" |
+      Order by:
+      \#{radio_button_tag(:order, "price")}
+      \#{label_tag(:price, "price")}
+      \#{radio_button_tag(:order, "ending_time")}
+      \#{label_tag(:ending_time, "ending time")}
+    - if user_signed_in?
+      = current_user.email
+      = link_to "Sign out", destroy_user_session_path, method: 'DELETE'
+    - else
+      = link_to "Sign up", new_user_registration_path
+      = link_to "Sign in", new_user_session_path
