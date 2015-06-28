@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
          :omniauth_providers => [:facebook]
 
   has_many :identities
+  has_one :profile
 
 
   def self.from_omniauth(auth, signed_in_resource = nil)

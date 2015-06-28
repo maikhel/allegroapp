@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
 
   	client = SoapConnection.new
     @categories = client.categories
-  	cat = client.categories[params[:category]]
+    cat = client.categories[params[:category]]
     order = params[:order]
     order == 'price'? order=4 : order=1
     @items = []

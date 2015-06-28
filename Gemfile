@@ -8,6 +8,7 @@ gem 'devise'
 
 #assets
 gem 'jquery-ui-rails'
+gem 'country_select'
 gem 'simple_form'
 gem 'haml-rails'
 gem "twitter-bootstrap-rails"

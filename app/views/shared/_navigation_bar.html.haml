@@ -27,7 +27,7 @@
       \#{radio_button_tag(:order, "ending_time")}
       \#{label_tag(:ending_time, "ending time")}
     - if user_signed_in?
-      = current_user.email
+      = link_to current_user.email, profile_path(current_user.id)
       = link_to "Sign out", destroy_user_session_path, method: 'DELETE'
     - else
       = link_to "Sign up", new_user_registration_path

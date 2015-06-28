@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   
 
+  resources :profiles do 
+    member do 
+      post 'get_data_from_fb' => "profiles#get_data_from_fb", as: :get_data_from_fb
+    end
+  end
+
   resources :products
   
   

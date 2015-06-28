@@ -1,0 +1,13 @@
+= simple_form_for(@profile) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :birthday
+    = f.input :city
+    = f.input :country
+    = f.input :age
+    = f.input :gender
+    = f.hidden_field :user_id, value: current_user.id
+
+  .form-actions
+    = f.button :submit
