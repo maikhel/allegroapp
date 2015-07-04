@@ -230,7 +230,8 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
  
-  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
+  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
+   :scope => "user_about_me, user_birthday, user_location, user_work_history, user_education_history, user_relationships", :display => "popup"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

@@ -3,4 +3,4 @@
   .container-fluid
     = render 'form'
     = link_to 'Back', profiles_path
-    = link_to "Fill with FB", "#"
+    = link_to "Fill with FB", get_profile_data_path(current_user.id)

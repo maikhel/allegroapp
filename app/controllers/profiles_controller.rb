@@ -22,10 +22,18 @@ class ProfilesController < ApplicationController
   def edit
   end
 
-  def get_data_from_fb
-    @graph = Koala::Facebook::API.new(oauth_access_token)
 
-    profile = @graph.get_object("me")
+  def get_profile_data
+    
+     session["omniauth_target"] = "get_profile_data"
+
+    if current_user.nil? or current_user.identities.first.token_expired?
+      redirect_to sign_in_path
+    end
+    
+    @graph = Koala::Facebook::API.new(current_user.identities.first.token)
+
+    @my_info = @graph.get_object("me")
 
   end
 

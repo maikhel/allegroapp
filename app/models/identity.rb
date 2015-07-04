@@ -23,4 +23,17 @@ class Identity < ActiveRecord::Base
 		find_or_create_by(uid: auth.uid, provider: auth.provider)
 	end
 
+	def token_expired?
+		expires = self.token_expires_at
+
+		if expires and expires == Time.at(0)
+			false
+		else
+			Time.now > expires
+		end
+		
+
+	end
+
+
 end
