@@ -16,17 +16,26 @@ class ProductsController < ApplicationController
   end
 
   def index
+    
+  	
+    @categories = {"Elektronika" => 10, "Moda i uroda" => 250152, "Dom i zdrowie" =>79197,
+    "Dziecko" => 250145, "Kultura i rozrywka" => 262, "Sport i wypoczynek" => 3919,
+    "Motoryzacja" => 3, "Kolekcje i sztuka" => 105417, "Firma i usługi" => 105414, 
+    "Strefa okazji"=>98316, "Wszystko" => 0}
+    @items = []
+    
+  end
 
-  	client = SoapConnection.new
-    @categories = client.categories
+  def search
+    client = SoapConnection.new
     cat = client.categories[params[:category]]
     order = params[:order]
     order == 'price'? order=4 : order=1
-    @items = []
+    
     @items = client.search(params[:search], cat,order) if params[:search]
    
-  	render 'index'
   end
+
 
 private
 
