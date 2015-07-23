@@ -13,7 +13,12 @@
 #  updated_at  :datetime         not null
 #
 
-class Item < ActiveRecord::Base
+require 'spec_helper'
+
+describe Item do
+  it "is valid with all properties" do 
+   expect(create(:item)).to be_valid
+  end
 
 
 end

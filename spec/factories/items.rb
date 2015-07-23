@@ -13,7 +13,11 @@
 #  updated_at  :datetime         not null
 #
 
-class Item < ActiveRecord::Base
-
-
+FactoryGirl.define do
+  factory :item do
+    name "Item name"
+    price 9.99
+    ending_time "2015-12-16 15:53:41"
+    allegro_id 23423423423
+  end
 end
