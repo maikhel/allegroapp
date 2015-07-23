@@ -26,9 +26,11 @@ class ProductsController < ApplicationController
     
   end
 
+<<<<<<< HEAD
   def search
-    client = SoapConnection.new
-    cat = client.categories[params[:category]]
+
+  	client = SoapClient.new
+  	cat = client.categories[params[:category]]
     order = params[:order]
     order == 'price'? order=4 : order=1
     
