@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   def index
 
-  	client = SoapConnection.new
+  	client = SoapClient.new
   	cat = client.categories[params[:category]]
     order = params[:order]
     order == 'price'? order=4 : order=1
