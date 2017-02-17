@@ -3,10 +3,10 @@
 # Table name: identities
 #
 #  id               :integer          not null, primary key
-#  uid              :string
-#  provider         :string
+#  uid              :string(255)
+#  provider         :string(255)
 #  user_id          :integer
-#  token            :string
+#  token            :string(255)
 #  token_expires_at :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

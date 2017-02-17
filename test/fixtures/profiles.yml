@@ -4,10 +4,10 @@
 #
 #  id         :integer          not null, primary key
 #  birthday   :date
-#  city       :string
-#  country    :string
+#  city       :string(255)
+#  country    :string(255)
 #  age        :integer
-#  gender     :string
+#  gender     :string(255)
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

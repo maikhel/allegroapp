@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 #main
 gem 'rails', '4.2.0'
-gem 'sqlite3'
 gem 'devise'
+gem 'mysql2', '~> 0.3.18'
 
 #assets
 gem 'jquery-ui-rails'
@@ -25,14 +25,8 @@ gem 'jbuilder', '~> 2.0'
 #API
 gem 'savon'
 
-#fb integration
-gem 'koala'
-gem 'omniauth-facebook'
-
 #other
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'annotate'
-
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -42,7 +36,6 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'pry-rails'
-<<<<<<< HEAD
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'database_cleaner'
