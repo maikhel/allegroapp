@@ -1,8 +1,6 @@
 class Product
-	
-	attr_reader :name, :price, :ending_time, :categories, :thumb_url, :link, :allegro_id
 
-	
+	attr_reader :name, :price, :ending_time, :categories, :thumb_url, :link, :allegro_id
 
   	def initialize(id, name, price, ending_time, thumb_url)
 
@@ -14,8 +12,8 @@ class Product
         @ending_time = "no time limit"
       else
   		  @ending_time = Time.at(ending_time.to_i)
-        
       end
+
   		@thumb_url = thumb_url
       name_link = name.tr(' ','-')
       name_link = name_link.tr('.', '-')
@@ -28,8 +26,6 @@ class Product
       instance_variables.each {|var| hash[var.to_s.delete("@")] = instance_variable_get(var) }
       hash
     end
-
-
 
 end
 
